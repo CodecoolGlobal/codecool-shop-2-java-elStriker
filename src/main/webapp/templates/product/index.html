@@ -36,7 +36,11 @@
 
 <div class="container">
     <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
+        <select class="form-control">
+            <option value="0">select category</option>
+            <option th:each="category : ${category}" th:value="${category.id}" th:text="${category.name}"></option>
+        </select>
+        <!--strong th:text="${category.name}">Category Title</strong-->
     </div>
 
     <div id="products" class="row">

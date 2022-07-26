@@ -40,7 +40,6 @@ public class Initializer implements ServletContextListener {
 
         //setting up a new product category
         //default category
-        ProductCategory defaultCategory = new ProductCategory("", "Default", "Default");
         ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
         ProductCategory shoes = new ProductCategory("Shoes", "Footwear", "A shoe with a rubber sole that is designed for people to wear while running, playing sports.");
         ProductCategory food = new ProductCategory("Food", "Food", "Products to consume and satisfy your hunger.");
@@ -51,8 +50,6 @@ public class Initializer implements ServletContextListener {
         ProductCategory smartWatch = new ProductCategory("Watch", "Accessory", "a mobile device with a touchscreen display, designed to be worn on the wrist.");
 
         //add category to dataStore
-        productCategoryDataStore.add(defaultCategory);
-        //done
         productCategoryDataStore.add(tablet);
         //done
         productCategoryDataStore.add(shoes);

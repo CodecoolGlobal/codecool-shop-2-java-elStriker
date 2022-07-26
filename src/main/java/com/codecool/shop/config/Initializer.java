@@ -52,9 +52,13 @@ public class Initializer implements ServletContextListener {
 
         //add category to dataStore
         productCategoryDataStore.add(defaultCategory);
+        //done
         productCategoryDataStore.add(tablet);
+        //done
         productCategoryDataStore.add(shoes);
+        //done
         productCategoryDataStore.add(food);
+        //done
         productCategoryDataStore.add(drink);
         productCategoryDataStore.add(pants);
         productCategoryDataStore.add(shirt);
@@ -66,6 +70,16 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Lenovo IdeaPad Miix 700", new BigDecimal("479"), "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
         productDataStore.add(new Product("Amazon Fire HD 8", new BigDecimal("89"), "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
 
-        productDataStore.add(new Product("Domino's Pizza", new BigDecimal("18"), "USD", "Best pizza in the neighbourhood", defaultCategory, mjam));
+        productDataStore.add(new Product("Domino's Pizza", new BigDecimal("18"), "USD", "Best pizza in the neighbourhood", food, mjam));
+        productDataStore.add(new Product("Carbonara", new BigDecimal("70"), "USD", "Organic, home-grown spaghetti with cream", food, mjam));
+        productDataStore.add(new Product("Better Big Mac", new BigDecimal("50"), "USD", "A lot better version of the crappy McDonald's Big Mac", food, mjam));
+
+        productDataStore.add(new Product("Air force 1", new BigDecimal("2000"), "USD", "Best selling nike shoes of all times", shoes, nike));
+        productDataStore.add(new Product("Tap-dancing shoes", new BigDecimal("1"), "USD", "A must have for every smart person", shoes, zara));
+        productDataStore.add(new Product("Converse Run Star Motion", new BigDecimal("149"), "USD", "Perfect for you if you are into weird stuff", shoes, nike));
+
+        productDataStore.add(new Product("Coke", new BigDecimal("5"), "USD", "Most effective drink to give you diabetes", drink, mjam));
+        productDataStore.add(new Product("Butter-Beer", new BigDecimal("20"), "USD", "Magical drink to make your loved ones happier.", drink, amazon));
+        productDataStore.add(new Product("Coffee", new BigDecimal("0"), "USD", "Liquid gold.", drink, apple));
     }
 }

@@ -42,7 +42,7 @@ public class Initializer implements ServletContextListener {
         //default category
         ProductCategory defaultCategory = new ProductCategory("", "Default", "Default");
         ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        ProductCategory shoes = new ProductCategory("Sneakers", "Footwear", "A shoe with a rubber sole that is designed for people to wear while running, playing sports.");
+        ProductCategory shoes = new ProductCategory("Shoes", "Footwear", "A shoe with a rubber sole that is designed for people to wear while running, playing sports.");
         ProductCategory food = new ProductCategory("Food", "Food", "Products to consume and satisfy your hunger.");
         ProductCategory drink = new ProductCategory("Drink", "Drink", "Products to quench your thirst.");
         ProductCategory pants = new ProductCategory("Pants", "Clothing", "An outer garment covering each leg separately and usually extending from the waist to the ankle");

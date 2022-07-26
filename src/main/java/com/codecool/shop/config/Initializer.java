@@ -29,6 +29,12 @@ public class Initializer implements ServletContextListener {
         supplierDataStore.add(amazon);
         Supplier lenovo = new Supplier("Lenovo", "Computers");
         supplierDataStore.add(lenovo);
+        Supplier mjam = new Supplier("Mjam", "Food");
+        supplierDataStore.add(mjam);
+        Supplier zara = new Supplier("Zara", "Clothing");
+        supplierDataStore.add(zara);
+        Supplier nike = new Supplier("Nike", "Sport wear");
+        supplierDataStore.add(nike);
 
         //setting up a new product category
         //default category
@@ -41,6 +47,6 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Amazon Fire", new BigDecimal("49.9"), "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
         productDataStore.add(new Product("Lenovo IdeaPad Miix 700", new BigDecimal("479"), "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
         productDataStore.add(new Product("Amazon Fire HD 8", new BigDecimal("89"), "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
-        productDataStore.add(new Product("Food", new BigDecimal("20"), "USD", "food", defaultCategory, amazon));
+        productDataStore.add(new Product("Food", new BigDecimal("20"), "USD", "food", defaultCategory, mjam));
     }
 }

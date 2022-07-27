@@ -12,9 +12,5 @@ async function addProductToCart(e) {
 
     const response = await fetch(url, {
             method: 'post',
-            body: `{"id": ${productId}}`
         });
-    response.json().then(data => {
-        console.log(data);
-    });
 }

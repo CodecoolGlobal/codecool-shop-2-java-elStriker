@@ -48,14 +48,10 @@ public class Initializer implements ServletContextListener {
         ProductCategory shirt = new ProductCategory("Shirt", "Clothing", "a garment for the upper body made of cotton or a similar fabric, with a collar and sleeves, and with buttons down the front.");
         ProductCategory computer = new ProductCategory("Computer", "Hardware", "An electronic device for storing and processing data, typically in binary form, according to instructions given to it in a variable program.");
         ProductCategory smartWatch = new ProductCategory("Watch", "Accessory", "a mobile device with a touchscreen display, designed to be worn on the wrist.");
-
         //add category to dataStore
         productCategoryDataStore.add(tablet);
-        //done
         productCategoryDataStore.add(shoes);
-        //done
         productCategoryDataStore.add(food);
-        //done
         productCategoryDataStore.add(drink);
         productCategoryDataStore.add(pants);
         productCategoryDataStore.add(shirt);
@@ -78,5 +74,22 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Coke", new BigDecimal("5"), "USD", "Most effective drink to give you diabetes", drink, mjam));
         productDataStore.add(new Product("Butter-Beer", new BigDecimal("20"), "USD", "Magical drink to make your loved ones happier.", drink, amazon));
         productDataStore.add(new Product("Coffee", new BigDecimal("0"), "USD", "Liquid gold.", drink, apple));
+
+        productDataStore.add(new Product("Khaki-pants", new BigDecimal("99"), "USD", "\n" +
+                "“Khakis” and “chinos” are both used to describe casual trousers made with a 100% cotton twill fabric. Technically, “khaki” is a color (light-brown drab), while “chinos” are a style of pant, so strictly speaking, khakis are brown-colored chinos.", pants, zara));
+        productDataStore.add(new Product("Shorts", new BigDecimal("49"), "USD", "Shorts are a garment worn over the pelvic area, circling the waist and splitting to cover the upper part of the legs, sometimes extending down to the knees but not covering the entire length of the leg.", pants, amazon));
+        productDataStore.add(new Product("Trousers", new BigDecimal("59"), "USD", "Trousers, also spelled trowsers, also called pants or slacks, an outer garment covering the lower half of the body from the waist to the ankles and divided into sections to cover each leg separately.", pants, nike));
+
+        productDataStore.add(new Product("Hawaii-Shirt", new BigDecimal("1"), "USD", "A short-sleeved, loose-fitting, open-collar shirt originally worn in Hawaii, made of lightweight fabric printed in colorful, often bold designs of flowers, leaves, birds, beaches, etc.", shirt, zara));
+        productDataStore.add(new Product("Polo shirt", new BigDecimal("35"), "USD", "a close-fitting pullover often knit shirt with short or long sleeves and turnover collar or banded neck.", shirt, mjam ));
+        productDataStore.add(new Product("Voldemort shirt", new BigDecimal("99999"), "USD", "BEST SHIRT IN THE WHOLE WORLD.", shirt, amazon));
+
+        productDataStore.add(new Product("Elder wand Computer", new BigDecimal("1337"), "USD", "Fastest computer and best magic wand in the world.", computer, apple));
+        productDataStore.add(new Product("Not a lenovo Gaming PC", new BigDecimal("2999"), "USD", "A monster gaming pc that will scratch your gaming itch.", computer, lenovo));
+        productDataStore.add(new Product("Amazon Retro PC", new BigDecimal("69"), "USD", "If you feel like the 80's and 90's were better, buy this.", computer, amazon));
+
+        productDataStore.add(new Product("Xiaomi smartwatch", new BigDecimal("0.2"), "USD", "Some chinese crap - Sun Tzu.", smartWatch, amazon));
+        productDataStore.add(new Product("Apple watch", new BigDecimal("1293"), "USD", "The most expensive, unneccessary thing in your life, but you will it because u addicted bruv.", smartWatch, apple));
+        productDataStore.add(new Product("Garmin Fenix 7X", new BigDecimal("999"), "USD", "Solar powered, sport watch that will make everyone excited to see you run.", smartWatch, amazon));
     }
 }

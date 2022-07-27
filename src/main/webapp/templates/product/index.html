@@ -36,10 +36,13 @@
 
 <div class="container">
     <div class="card">
-        <select class="form-control">
-            <option value="0">select category</option>
-            <option th:each="category : ${category}" th:value="${category.id}" th:text="${category.name}"></option>
-        </select>
+        <form action="/" method="post">
+            <select class="form-control">
+                <option value="0">select category</option>
+                <option th:each="category : ${category}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+            <button>Submit</button>
+        </form>
         <!--strong th:text="${category.name}">Category Title</strong-->
     </div>
 

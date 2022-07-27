@@ -14,9 +14,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
@@ -34,6 +36,9 @@ public class ProductController extends HttpServlet {
         //TODO GET ID FROM SELECTED CATEGORY AND INSERT IT INTO PRODUCTS TO GET ALL PRODUCTS FROM THAT CATEGORY
 
 
+
+
+
         // // Alternative setting of the template context
         // Map<String, Object> params = new HashMap<>();
         // params.put("category", productCategoryDataStore.find(1));
@@ -42,4 +47,26 @@ public class ProductController extends HttpServlet {
         engine.process("product/index.html", context, resp.getWriter());
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //int value = Integer.parseInt(req.getParameter("id"));
+        Map allParameters = req.getParameterMap();
+        System.out.println(allParameters.values());
+
+        System.out.println("I am here");
+        ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
+
+        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
+        WebContext context = new WebContext(req, resp, req.getServletContext());
+        context.setVariable("category", productCategoryDataStore.getAll());
+        context.setVariable("products", productService.getProductsForCategory(1));
+
+
+        engine.process("product/index.html", context, resp.getWriter());
+
+
+
+    }
 }

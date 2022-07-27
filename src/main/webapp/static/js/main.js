@@ -14,3 +14,4 @@ async function addProductToCart(e) {
             method: 'post',
         });
 }
+

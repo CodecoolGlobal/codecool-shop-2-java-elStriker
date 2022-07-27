@@ -43,6 +43,29 @@ public class OrderController extends HttpServlet {
 
     }
 
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+        OrderDaoMem cart = OrderDaoMem.getInstance();
+        Map<String, String> productCounts = new HashMap<>();
+        //Map<String, Integer> productPrices = new HashMap<>();
+
+        for (Product product : cart.getData()) {
+            productCounts.put(product.getName(), "Number: " + cart.getNumberOfProducts(product));
+           // productPrices.put(product.getName(), Integer.valueOf(product.getPrice()));
+        }
+
+        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
+        WebContext context = new WebContext(req, resp, req.getServletContext());
+        context.setVariable("products", cart.getAll());
+        context.setVariable("productcounts", productCounts);
+        context.setVariable("totalprice", "Total price: " + cart.getTotalPrice() + " USD");
+
+        engine.process("order/cart.html", context, resp.getWriter());
+
+    }
+
 
 
 }

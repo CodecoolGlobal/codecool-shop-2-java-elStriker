@@ -32,6 +32,17 @@ public class OrderDaoMem implements OrderDao {
     public List<Product> getData() {return this.data;}
 
     @Override
+    public int getNumberOfProducts(Product product) {
+        int numberOfProducts = data.stream().filter(p -> p.equals(product)).collect(Collectors.toList()).size();
+        return numberOfProducts;
+    }
+
+    public double getTotalPrice() {
+        double totalPrice = data.stream().map(p -> p.getDefaultPrice()).mapToDouble(p -> p.doubleValue()).sum();
+        return totalPrice;
+    }
+
+    @Override
     public void add(Product product) {
         /*product.setId(data.size() + 1);*/
         data.add(product);

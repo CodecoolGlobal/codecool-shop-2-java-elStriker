@@ -7,6 +7,10 @@ import com.codecool.shop.model.Supplier;
 import java.util.List;
 
 public interface OrderDao {
+
+    int getNumberOfProducts(Product product);
+
+    double getTotalPrice();
     void add(Product product);
     Product find(int id);
     void remove(int id);

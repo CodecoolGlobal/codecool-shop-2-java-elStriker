@@ -52,7 +52,7 @@
         </div>
     </div>
 
-    <div th:text="${totalprice}"></div>
+    <div th:if="${totalprice != 0.0}" th:text="${totalpriceInCurrency}"></div>
 
 </div>
 

@@ -39,7 +39,14 @@
 
 <div class="container">
     <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
+        <form action="/" method="post">
+            <select class="form-control">
+                <option value="0">select category</option>
+                <option th:each="category : ${category}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+            <button>Submit</button>
+        </form>
+        <!--strong th:text="${category.name}">Category Title</strong-->
     </div>
 
     <div id="products" class="row">
@@ -64,7 +71,9 @@
 
 </div>
 
+
 <div th:replace="footer.html :: copy"></div>
 <script type='text/javascript' src='static/js/main.js'></script>
+
 </body>
 </html>

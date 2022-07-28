@@ -9,14 +9,19 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
+import javax.lang.model.element.Element;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 
 @WebServlet(urlPatterns = {"/"})
 public class ProductController extends HttpServlet {
@@ -29,8 +34,14 @@ public class ProductController extends HttpServlet {
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("category", productService.getProductCategory(2));
-        context.setVariable("products", productService.getProductsForCategory(2));
+        context.setVariable("category", productCategoryDataStore.getAll());
+        context.setVariable("products", productDataStore.getAll());
+        //TODO GET ID FROM SELECTED CATEGORY AND INSERT IT INTO PRODUCTS TO GET ALL PRODUCTS FROM THAT CATEGORY
+
+
+
+
+
         // // Alternative setting of the template context
         // Map<String, Object> params = new HashMap<>();
         // params.put("category", productCategoryDataStore.find(1));
@@ -39,4 +50,30 @@ public class ProductController extends HttpServlet {
         engine.process("product/index.html", context, resp.getWriter());
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //int value = Integer.parseInt(req.getParameter("id"));
+        /*Map allParameters = req.getParameterMap();
+        List newList = new ArrayList();
+        newList.add(req.getParameterNames());
+        System.out.println(req.getParameterNames().asIterator().toString());
+
+        System.out.println(newList.stream().findFirst().stream().findAny());
+
+        System.out.println("I am here");*/
+        ProductDao productDataStore = ProductDaoMem.getInstance();
+        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
+
+        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
+        WebContext context = new WebContext(req, resp, req.getServletContext());
+        context.setVariable("category", productCategoryDataStore.getAll());
+        context.setVariable("products", productService.getProductsForCategory(1));
+
+
+        engine.process("product/index.html", context, resp.getWriter());
+
+
+
+    }
 }

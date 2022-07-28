@@ -7,6 +7,7 @@ import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.model.Product;
+import com.codecool.shop.service.OrderService;
 import com.codecool.shop.service.ProductService;
 import com.codecool.shop.config.TemplateEngineUtil;
 import org.thymeleaf.TemplateEngine;
@@ -18,8 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+
 
 @WebServlet(urlPatterns = {"/order"})
 public class OrderController extends HttpServlet {
@@ -29,39 +29,39 @@ public class OrderController extends HttpServlet {
             throws ServletException, IOException {
 
         ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
         OrderDaoMem cart = OrderDaoMem.getInstance();
-
-        String newOrderId = req.getParameter("id");
-        Product newOrder = productDataStore.find(Integer.valueOf(Integer.parseInt(newOrderId)));
-        cart.add(newOrder);
-        System.out.println(cart.getData().get(0));
+        OrderService orderService = new OrderService(cart, productDataStore);
 
         String site = new String("http://localhost:8080/");
+        if (req.getParameter("id") != null) {
+            String newOrderId = req.getParameter("id");
+            if (req.getParameter("number") != null) {
+                int productNumber = Integer.valueOf(Integer.parseInt(req.getParameter("number")));
+                orderService.addNewProducts(Integer.valueOf(Integer.parseInt(newOrderId)), productNumber);
+                site = "http://localhost:8080/order";
+            } else {
+                orderService.addNewProduct(Integer.valueOf(Integer.parseInt(newOrderId)));
+            }
+        }
+        System.out.println(cart.getAll());
         resp.sendRedirect(site);
-
     }
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        OrderDaoMem cart = OrderDaoMem.getInstance();
-        Map<String, String> productCounts = new HashMap<>();
-        //Map<String, Integer> productPrices = new HashMap<>();
+        ProductDao productDataStore = ProductDaoMem.getInstance();
+        OrderDao cart = OrderDaoMem.getInstance();
+        OrderService orderService = new OrderService(cart, productDataStore);
 
-        for (Product product : cart.getData()) {
-            productCounts.put(product.getName(), "Number: " + cart.getNumberOfProducts(product));
-           // productPrices.put(product.getName(), Integer.valueOf(product.getPrice()));
-        }
 
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("products", cart.getAll());
-        context.setVariable("productcounts", productCounts);
-        context.setVariable("totalprice", cart.getTotalPrice());
-        context.setVariable("totalpriceInCurrency", "Total price: " + cart.getTotalPrice() + " USD");
+        context.setVariable("products", orderService.getUniqueProducts());
+        context.setVariable("productcounts", orderService.getProductCounts());
+        context.setVariable("totalprice", orderService.getTotalPrice());
+        context.setVariable("totalpriceInCurrency", "Total price: " + orderService.getTotalPrice() + " USD");
 
         engine.process("order/cart.html", context, resp.getWriter());
 

@@ -35,11 +35,18 @@
     <div class="cart">
         <a th:href="@{/order}">Shopping cart</a>
     </div>
+    <button id="reset-button">Reset</button>
 </div>
 
 <div class="container">
     <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
+        <form th:href="@{/id}">
+            <select class="form-control">
+                <option value="0">select category</option>
+                <option th:each="category : ${category}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+        </form>
+        <!--strong th:text="${category.name}">Category Title</strong-->
     </div>
 
     <div id="products" class="row">
@@ -64,7 +71,9 @@
 
 </div>
 
+
 <div th:replace="footer.html :: copy"></div>
 <script type='text/javascript' src='static/js/main.js'></script>
+
 </body>
 </html>

@@ -29,8 +29,6 @@ public class OrderDaoMem implements OrderDao {
         return instance;
     }
 
-    public List<Product> getData() {return this.data;}
-
     @Override
     public int getNumberOfProducts(Product product) {
         int numberOfProducts = data.stream().filter(p -> p.equals(product)).collect(Collectors.toList()).size();
@@ -44,7 +42,6 @@ public class OrderDaoMem implements OrderDao {
 
     @Override
     public void add(Product product) {
-        /*product.setId(data.size() + 1);*/
         data.add(product);
     }
 
@@ -56,6 +53,11 @@ public class OrderDaoMem implements OrderDao {
     @Override
     public void remove(int id) {
         data.remove(find(id));
+    }
+
+    @Override
+    public void removeAll(Product product) {
+        data = data.stream().filter(t -> t.getId() != product.getId()).collect(Collectors.toList());
     }
 
     @Override

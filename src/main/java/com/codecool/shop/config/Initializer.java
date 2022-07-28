@@ -73,7 +73,7 @@ public class Initializer implements ServletContextListener {
 
         productDataStore.add(new Product("Coke", new BigDecimal("5"), "USD", "Most effective drink to give you diabetes", drink, mjam));
         productDataStore.add(new Product("Butter-Beer", new BigDecimal("20"), "USD", "Magical drink to make your loved ones happier.", drink, amazon));
-        productDataStore.add(new Product("Coffee", new BigDecimal("0"), "USD", "Liquid gold.", drink, apple));
+        productDataStore.add(new Product("Coffee", new BigDecimal("0"), "USD", "Liquid gold for free. Just pay the 20 USD shipping fee.", drink, apple));
 
         productDataStore.add(new Product("Khaki-pants", new BigDecimal("99"), "USD", "\n" +
                 "“Khakis” and “chinos” are both used to describe casual trousers made with a 100% cotton twill fabric. Technically, “khaki” is a color (light-brown drab), while “chinos” are a style of pant, so strictly speaking, khakis are brown-colored chinos.", pants, zara));

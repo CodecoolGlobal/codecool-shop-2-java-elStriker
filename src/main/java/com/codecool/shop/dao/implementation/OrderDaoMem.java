@@ -29,8 +29,6 @@ public class OrderDaoMem implements OrderDao {
         return instance;
     }
 
-    public List<Product> getData() {return this.data;}
-
     @Override
     public int getNumberOfProducts(Product product) {
         int numberOfProducts = data.stream().filter(p -> p.equals(product)).collect(Collectors.toList()).size();

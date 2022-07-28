@@ -59,6 +59,11 @@ public class OrderDaoMem implements OrderDao {
     }
 
     @Override
+    public void removeAll(Product product) {
+        data = data.stream().filter(t -> t.getId() != product.getId()).collect(Collectors.toList());
+    }
+
+    @Override
     public List<Product> getAll() {
         return data;
     }

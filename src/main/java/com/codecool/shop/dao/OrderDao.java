@@ -15,6 +15,8 @@ public interface OrderDao {
     Product find(int id);
     void remove(int id);
 
+    void removeAll(Product product);
+
     List<Product> getAll();
     List<Product> getBy(Supplier supplier);
     List<Product> getBy(ProductCategory productCategory);

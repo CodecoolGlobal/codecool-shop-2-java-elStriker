@@ -28,52 +28,33 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
 
-        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
-        WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("category", productCategoryDataStore.getAll());
-        context.setVariable("products", productDataStore.getAll());
         //TODO GET ID FROM SELECTED CATEGORY AND INSERT IT INTO PRODUCTS TO GET ALL PRODUCTS FROM THAT CATEGORY
+        if (req.getParameter("id") == null) {
+            ProductDao productDataStore = ProductDaoMem.getInstance();
+            ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+            ProductService productService = new ProductService(productDataStore, productCategoryDataStore);
+
+            TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
+            WebContext context = new WebContext(req, resp, req.getServletContext());
+            context.setVariable("category", productCategoryDataStore.getAll());
+            context.setVariable("products", productDataStore.getAll());
+            engine.process("product/index.html", context, resp.getWriter());
+        } else {
+            int id = Integer.parseInt(req.getParameter("id"));
 
 
+            ProductDao productDataStore = ProductDaoMem.getInstance();
+            ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+            ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
+
+            TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
+            WebContext context = new WebContext(req, resp, req.getServletContext());
+            context.setVariable("category", productCategoryDataStore.getAll());
+            context.setVariable("products", productService.getProductsForCategory(id));
 
 
-
-        // // Alternative setting of the template context
-        // Map<String, Object> params = new HashMap<>();
-        // params.put("category", productCategoryDataStore.find(1));
-        // params.put("products", productDataStore.getBy(productCategoryDataStore.find(1)));
-        // context.setVariables(params);
-        engine.process("product/index.html", context, resp.getWriter());
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //int value = Integer.parseInt(req.getParameter("id"));
-        /*Map allParameters = req.getParameterMap();
-        List newList = new ArrayList();
-        newList.add(req.getParameterNames());
-        System.out.println(req.getParameterNames().asIterator().toString());
-
-        System.out.println(newList.stream().findFirst().stream().findAny());
-
-        System.out.println("I am here");*/
-        ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
-
-        TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
-        WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("category", productCategoryDataStore.getAll());
-        context.setVariable("products", productService.getProductsForCategory(1));
-
-
-        engine.process("product/index.html", context, resp.getWriter());
-
-
-
+            engine.process("product/index.html", context, resp.getWriter());
+        }
     }
 }

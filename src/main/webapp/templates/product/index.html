@@ -39,12 +39,12 @@
 
 <div class="container">
     <div class="card">
-        <form action="/" method="post">
+        <form th:href="@{/id}">
             <select class="form-control">
                 <option value="0">select category</option>
                 <option th:each="category : ${category}" th:value="${category.id}" th:text="${category.name}"></option>
             </select>
-            <button>Submit</button>
+            <button id="reset-button">Reset</button>
         </form>
         <!--strong th:text="${category.name}">Category Title</strong-->
     </div>

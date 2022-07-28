@@ -89,7 +89,7 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Amazon Retro PC", new BigDecimal("69"), "USD", "If you feel like the 80's and 90's were better, buy this.", computer, amazon));
 
         productDataStore.add(new Product("Xiaomi smartwatch", new BigDecimal("0.2"), "USD", "Some chinese crap - Sun Tzu.", smartWatch, amazon));
-        productDataStore.add(new Product("Apple watch", new BigDecimal("1293"), "USD", "The most expensive, unneccessary thing in your life, but you will it because u addicted bruv.", smartWatch, apple));
+        productDataStore.add(new Product("Apple watch", new BigDecimal("1293"), "USD", "The most expensive, unneccessary thing in your life, but you will buy it because u addicted bruv.", smartWatch, apple));
         productDataStore.add(new Product("Garmin Fenix 7X", new BigDecimal("999"), "USD", "Solar powered, sport watch that will make everyone excited to see you run.", smartWatch, amazon));
     }
 }

@@ -9,6 +9,7 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
+import javax.lang.model.element.Element;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -50,10 +53,14 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //int value = Integer.parseInt(req.getParameter("id"));
-        Map allParameters = req.getParameterMap();
-        System.out.println(allParameters.values());
+        /*Map allParameters = req.getParameterMap();
+        List newList = new ArrayList();
+        newList.add(req.getParameterNames());
+        System.out.println(req.getParameterNames().asIterator().toString());
 
-        System.out.println("I am here");
+        System.out.println(newList.stream().findFirst().stream().findAny());
+
+        System.out.println("I am here");*/
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         ProductService productService = new ProductService(productDataStore,productCategoryDataStore);

@@ -39,13 +39,15 @@
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="card">
                 <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
-                <div class="card-header">
-                    <h4 class="card-title" th:text="${prod.name}">Product name</h4>
-                </div>
                 <div class="card-body">
                     <div class="card-text">
+                        <form th:action="${'/order?id=' + prod.getId()}" th:method="post">
+                        <p class="card-title" th:text="${prod.name}">Product name </p>
                         <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
-                        <p clas="lead" th:text="${productcounts.get(prod.getName())}"> </p>
+                         <label>Enter number:</label>
+                         <input type="text" name="number" th:value="${productcounts.get(prod.getName())}">
+                         <input type="submit" value="Submit">
+                        </form>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,6 @@ public class VerificationService {
 
     public boolean validateEmail(String email) {
         validator.validate(email);
-
+        return false;
     }
 }

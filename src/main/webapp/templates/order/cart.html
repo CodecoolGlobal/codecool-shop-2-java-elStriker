@@ -32,7 +32,7 @@
 <div class="jumbotron text-center">
     <h1>Shopping cart</h1>
     <button id="reset-button">Reset</button>
-    <button type="button" id="check-out-button" th:action="${'/check-out'}" th:method="GET">Checkout</button>
+    <a th:href="${'/check-out'}">Checkout</a>
 </div>
 
 <div class="container">

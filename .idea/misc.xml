@@ -12,10 +12,10 @@
     </option>
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="semeru-17" project-jdk-type="JavaSDK">
 =======
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
->>>>>>> 28c36eefb426d6d99d772c7d8da5976bc5d8adf4
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

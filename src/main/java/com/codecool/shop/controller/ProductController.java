@@ -34,7 +34,6 @@ public class ProductController extends HttpServlet {
             ProductDao productDataStore = ProductDaoMem.getInstance();
             ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
             ProductService productService = new ProductService(productDataStore, productCategoryDataStore);
-
             TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
             WebContext context = new WebContext(req, resp, req.getServletContext());
             context.setVariable("category", productCategoryDataStore.getAll());
@@ -42,8 +41,6 @@ public class ProductController extends HttpServlet {
             engine.process("product/index.html", context, resp.getWriter());
         } else {
             int id = Integer.parseInt(req.getParameter("id"));
-
-
             ProductDao productDataStore = ProductDaoMem.getInstance();
             ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
             ProductService productService = new ProductService(productDataStore,productCategoryDataStore);
@@ -52,7 +49,6 @@ public class ProductController extends HttpServlet {
             WebContext context = new WebContext(req, resp, req.getServletContext());
             context.setVariable("category", productCategoryDataStore.getAll());
             context.setVariable("products", productService.getProductsForCategory(id));
-
 
             engine.process("product/index.html", context, resp.getWriter());
         }

@@ -65,3 +65,15 @@
     bottom: 0;
     width: 100%;
 }
+
+.padding{
+
+    padding: 5rem !important;
+}
+
+
+
+.form-control:focus {
+    box-shadow: 10px 0px 0px 0px #ffffff !important;
+    border-color: #4ca746;
+}

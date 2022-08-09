@@ -23,7 +23,7 @@
     <!-- Latest compiled and minified CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.paymentDto/3.0.0/jquery.paymentDto.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
 
 </head>
@@ -51,8 +51,8 @@
                         </div>
 
                     </div>
-                    <!--/*@thymesVar id="payment" type=""*/-->
-                    <form action="#" th:action="@{/payment}" th:object="${payment}" method="post">
+                    <!--/*@thymesVar id="paymentDto" type=""*/-->
+                    <form action="#" th:action="@{/paymentDto}" th:object="${paymentDto}" method="post">
                     <div class="card-body" style="height: 350px">
                         <div class="form-group">
                             <label for="cc-number" class="control-label">CARD NUMBER</label>
@@ -98,5 +98,5 @@
 
 </div>
 <div th:replace="footer.html :: copy"></div>
-<script type='text/javascript' src='static/js/payment.js'></script>
+<script type='text/javascript' src='static/js/paymentDto.js'></script>
 </body>

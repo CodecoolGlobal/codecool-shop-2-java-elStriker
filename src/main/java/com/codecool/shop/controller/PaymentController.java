@@ -1,7 +1,7 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
-import com.codecool.shop.model.Payment;
+import com.codecool.shop.model.dto.PaymentDto;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -23,7 +23,7 @@ public class PaymentController extends HttpServlet {
         int cvc = Integer.parseInt(req.getParameter("cvc"));
         String name = req.getParameter("name");
         System.out.println(name +" "+ ccnumber +" "+ ccexp +" "+ cvc);
-        Payment payment = new Payment(ccnumber, ccexp, cvc, name);
+        PaymentDto paymentDto = new PaymentDto(ccnumber, ccexp, cvc, name);
 
         resp.sendRedirect("/");
     }

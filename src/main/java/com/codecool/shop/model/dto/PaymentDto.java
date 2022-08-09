@@ -1,15 +1,15 @@
-package com.codecool.shop.model;
+package com.codecool.shop.model.dto;
 
 import javax.validation.constraints.NotEmpty;
 
-public class Payment {
+public class PaymentDto {
     @NotEmpty
     private int ccnumber;
     private String ccexp;
     private int cvc;
     private String name;
 
-    public Payment(int ccnumber, String ccexp, int cvc, String name) {
+    public PaymentDto(int ccnumber, String ccexp, int cvc, String name) {
         this.ccnumber = ccnumber;
         this.ccexp = ccexp;
         this.cvc = cvc;

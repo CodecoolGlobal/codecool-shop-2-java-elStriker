@@ -11,15 +11,6 @@ public class VerificationService {
 
 
     public boolean validateCheckout(CheckOutDto checkOutDto) {
-        if (validator.validate(checkOutDto).size() == 0) {
-            System.out.println("EMPTY");
-            return true;
-        }
-        System.out.println("NOT EMPTY");
-
-    public boolean validateEmail(String email) {
-        validator.validate(email);
-
-        return false;
+        return validator.validate(checkOutDto).size() == 0;
     }
 }

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="codecool-shop-2-java-elStriker:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>codecool-shop-2-java-elStriker</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="codecoolshop.war">
+      <element id="artifact" artifact-name="codecool-shop-2-java-elStriker:war exploded" />
+    </root>
+  </artifact>
+</component>

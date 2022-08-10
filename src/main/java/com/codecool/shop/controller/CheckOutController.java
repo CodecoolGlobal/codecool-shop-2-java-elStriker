@@ -28,7 +28,7 @@ public class CheckOutController extends HttpServlet {
         if (verificationService.validateCheckout(checkOutDto)){
             // #TODO change to payment
             System.out.println("sending to index");
-            resp.sendRedirect("product/index.html");
+            resp.sendRedirect("/payment");
         } else {
             System.out.println("sending to checkout bqack");
             resp.sendRedirect("check-out");

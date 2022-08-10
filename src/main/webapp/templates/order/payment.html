@@ -52,7 +52,7 @@
 
                     </div>
                     <!--/*@thymesVar id="paymentDto" type=""*/-->
-                    <form action="#" th:action="@{/paymentDto}" th:object="${paymentDto}" method="post">
+                    <form th:action="@{'/payment'}" th:object="${payment}" th:method="post">
                     <div class="card-body" style="height: 350px">
                         <div class="form-group">
                             <label for="cc-number" class="control-label">CARD NUMBER</label>
@@ -98,5 +98,5 @@
 
 </div>
 <div th:replace="footer.html :: copy"></div>
-<script type='text/javascript' src='static/js/paymentDto.js'></script>
+<script type='text/javascript' src='static/js/payment.js'></script>
 </body>

@@ -6,6 +6,8 @@ import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
+import com.codecool.shop.model.dto.CheckOutDto;
+import com.codecool.shop.model.dto.PaymentDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,11 @@ import java.util.stream.Collectors;
 public class OrderDaoMem implements OrderDao {
 
     private List<Product> data = new ArrayList<>();
+
+    private CheckOutDto checkOutData;
+
+    private PaymentDto paymentData;
+
     private static OrderDaoMem instance = null;
 
     /* A private Constructor prevents any other class from instantiating.
@@ -27,6 +34,16 @@ public class OrderDaoMem implements OrderDao {
             instance = new OrderDaoMem();
         }
         return instance;
+    }
+
+    @Override
+    public void setCheckOutData(CheckOutDto checkOutData) {
+        this.checkOutData = checkOutData;
+    }
+
+    @Override
+    public void setPaymentData(PaymentDto paymentData) {
+        this.paymentData = paymentData;
     }
 
     @Override

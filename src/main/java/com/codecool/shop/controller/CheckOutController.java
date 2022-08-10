@@ -1,7 +1,11 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.implementation.OrderDaoMem;
+import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.model.dto.CheckOutDto;
+import com.codecool.shop.service.OrderService;
 import com.codecool.shop.service.VerificationService;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
@@ -15,6 +19,10 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/check-out"})
 public class CheckOutController extends HttpServlet {
+
+    ProductDao productDataStore = ProductDaoMem.getInstance();
+    OrderDaoMem cart = OrderDaoMem.getInstance();
+    OrderService orderService = new OrderService(cart, productDataStore);
     VerificationService verificationService = new VerificationService();
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -26,6 +34,7 @@ public class CheckOutController extends HttpServlet {
         String shippingAddress = req.getParameter("shipping-address");
         CheckOutDto checkOutDto = new CheckOutDto(name, email, phoneNumber, billingAddress, shippingAddress);
         if (verificationService.validateCheckout(checkOutDto)){
+            orderService.addCheckOutData(checkOutDto);
             // #TODO change to payment
             System.out.println("sending to index");
             resp.sendRedirect("product/index.html");

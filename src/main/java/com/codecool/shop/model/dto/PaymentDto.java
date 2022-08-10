@@ -1,22 +1,28 @@
 package com.codecool.shop.model.dto;
 
-import javax.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.CreditCardNumber;
+
+import javax.validation.constraints.*;
 
 public class PaymentDto {
     @NotEmpty
-    private int ccnumber;
+    @CreditCardNumber
+    private long ccnumber;
+    @NotBlank
     private String ccexp;
+    @NotBlank
     private int cvc;
+    @NotBlank
     private String name;
 
-    public PaymentDto(int ccnumber, String ccexp, int cvc, String name) {
+    public PaymentDto(long ccnumber, String ccexp, int cvc, String name) {
         this.ccnumber = ccnumber;
         this.ccexp = ccexp;
         this.cvc = cvc;
         this.name = name;
     }
 
-    public int getCcnumber() {
+    public long getCcnumber() {
         return ccnumber;
     }
 

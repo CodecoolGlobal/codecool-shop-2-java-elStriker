@@ -18,14 +18,14 @@ public class PaymentController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int ccnumber = Integer.parseInt(req.getParameter("ccnumber"));
+        long ccnumber = Long.parseLong(req.getParameter("ccnumber"));
         String ccexp = req.getParameter("ccexp");
         int cvc = Integer.parseInt(req.getParameter("cvc"));
         String name = req.getParameter("name");
         System.out.println(name +" "+ ccnumber +" "+ ccexp +" "+ cvc);
         PaymentDto paymentDto = new PaymentDto(ccnumber, ccexp, cvc, name);
 
-        resp.sendRedirect("/");
+        resp.sendRedirect("/confirmation");
     }
 
     @Override

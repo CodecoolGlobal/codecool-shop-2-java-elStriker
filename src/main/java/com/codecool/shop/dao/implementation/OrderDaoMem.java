@@ -37,6 +37,12 @@ public class OrderDaoMem implements OrderDao {
     }
 
     @Override
+    public CheckOutDto getCheckOutData() {return this.checkOutData;}
+
+    @Override
+    public PaymentDto getPaymentData() {return this.paymentData;}
+
+    @Override
     public void setCheckOutData(CheckOutDto checkOutData) {
         this.checkOutData = checkOutData;
     }

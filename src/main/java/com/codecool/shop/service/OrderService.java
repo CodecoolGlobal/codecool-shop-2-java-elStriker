@@ -61,6 +61,10 @@ public class OrderService {
         orderDao.setPaymentData(paymentData);
     }
 
+    public CheckOutDto getCheckOutData() {return orderDao.getCheckOutData();}
+
+    public PaymentDto getPaymentData() {return orderDao.getPaymentData();}
+
 
 
 

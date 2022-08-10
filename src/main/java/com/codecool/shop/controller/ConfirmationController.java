@@ -49,6 +49,8 @@ public class ConfirmationController extends HttpServlet {
         context.setVariable("productcounts", orderService.getProductCounts());
         context.setVariable("totalprice", orderService.getTotalPrice());
         context.setVariable("totalpriceInCurrency", "Total price: " + orderService.getTotalPrice() + " USD");
+        context.setVariable("costumerData", orderService.getCheckOutData());
+        context.setVariable("paymentData", orderService.getPaymentData());
 
         engine.process("order/confirmation.html", context, resp.getWriter());
 

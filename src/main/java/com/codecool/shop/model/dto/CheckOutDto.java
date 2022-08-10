@@ -1,7 +1,5 @@
 package com.codecool.shop.model.dto;
 
-import jdk.jfr.Name;
-
 import javax.validation.constraints.*;
 
 public class CheckOutDto {
@@ -25,5 +23,25 @@ public class CheckOutDto {
         this.phoneNumber = phoneNumber;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getBillingAddress() {
+        return billingAddress;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
     }
 }

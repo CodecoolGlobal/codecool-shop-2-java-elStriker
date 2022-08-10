@@ -10,6 +10,9 @@ import java.util.List;
 
 public interface OrderDao {
 
+    CheckOutDto getCheckOutData();
+    PaymentDto getPaymentData();
+
     void setCheckOutData(CheckOutDto checkOutData);
 
     void setPaymentData(PaymentDto paymentData);

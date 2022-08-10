@@ -3,6 +3,8 @@ package com.codecool.shop.service;
 import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.model.Product;
+import com.codecool.shop.model.dto.CheckOutDto;
+import com.codecool.shop.model.dto.PaymentDto;
 
 import java.util.*;
 
@@ -49,6 +51,14 @@ public class OrderService {
 
     public double getTotalPrice() {
         return orderDao.getTotalPrice();
+    }
+
+    public void addCheckOutData(CheckOutDto checkOutData) {
+        orderDao.setCheckOutData(checkOutData);
+    }
+
+    public void addPaymentData(PaymentDto paymentData) {
+        orderDao.setPaymentData(paymentData);
     }
 
 

@@ -24,12 +24,12 @@ public class Initializer implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        DatabaseManager databaseManager = new DatabaseManager();
+        /*DatabaseManager databaseManager = new DatabaseManager();
         try {
             databaseManager.getConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();

@@ -35,7 +35,8 @@ public class ConfirmationController extends HttpServlet {
 
         GsonBuilder gsonBuilder = new GsonBuilder();
 
-        gsonBuilder.registerTypeAdapter(OrderDaoMem.class, new OrderSerializer());
+        gsonBuilder.registerTypeAdapter(ProductCategory.class, new ProductCategorySerializer());
+        gsonBuilder.registerTypeAdapter(Supplier.class, new SupplierSerializer());
 
         Gson gson = gsonBuilder.create();
         String orderJson = gson.toJson(cart);

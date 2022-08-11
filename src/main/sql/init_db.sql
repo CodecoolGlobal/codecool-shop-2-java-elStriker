@@ -6,7 +6,9 @@ CREATE TABLE products
 (
     id integer not null,
     product_name  varchar not null,
-    price integer not null,
+    price decimal not null,
+    currency varchar not null,
+    description varchar not null,
     product_category_id integer not null,
     supplier_id integer not null
 );
@@ -14,13 +16,16 @@ CREATE TABLE products
 CREATE TABLE product_categories
 (
     id            integer not null,
-    category_name varchar not null
+    category_name varchar not null,
+    department varchar not null,
+    description varchar not null
 );
 
 CREATE TABLE suppliers
 (
     id integer not null,
-    supplier_name  varchar not null
+    supplier_name  varchar not null,
+    description varchar not null
 );
 
 ALTER TABLE products ADD PRIMARY KEY (id);

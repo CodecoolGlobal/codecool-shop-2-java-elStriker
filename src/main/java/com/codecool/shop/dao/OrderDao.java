@@ -29,4 +29,6 @@ public interface OrderDao {
     List<Product> getAll();
     List<Product> getBy(Supplier supplier);
     List<Product> getBy(ProductCategory productCategory);
+
+
 }

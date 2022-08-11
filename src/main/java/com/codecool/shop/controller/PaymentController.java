@@ -1,7 +1,11 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.implementation.OrderDaoMem;
+import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.model.dto.PaymentDto;
+import com.codecool.shop.service.OrderService;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -15,6 +19,10 @@ import java.io.IOException;
 @WebServlet(urlPatterns = {"/payment"})
 public class PaymentController extends HttpServlet {
 
+    ProductDao productDataStore = ProductDaoMem.getInstance();
+    OrderDaoMem cart = OrderDaoMem.getInstance();
+    OrderService orderService = new OrderService(cart, productDataStore);
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,6 +32,7 @@ public class PaymentController extends HttpServlet {
         String name = req.getParameter("name");
         System.out.println(name +" "+ ccnumber +" "+ ccexp +" "+ cvc);
         PaymentDto paymentDto = new PaymentDto(ccnumber, ccexp, cvc, name);
+        orderService.addPaymentData(paymentDto);
 
         resp.sendRedirect("/confirmation");
     }

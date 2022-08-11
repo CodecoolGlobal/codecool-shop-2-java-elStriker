@@ -39,13 +39,9 @@
                 <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
                 <div class="card-body">
                     <div class="card-text">
-                        <form th:action="${'/order?id=' + prod.getId()}" th:method="post">
                             <p class="card-title" th:text="${prod.name}">Product name </p>
                             <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
-                            <label>Enter number:</label>
-                            <input type="text" name="number" th:value="${productcounts.get(prod.getName())}">
-                            <input type="submit" value="Submit">
-                        </form>
+                            <p th:text="'Number: '+${productcounts.get(prod.getName())}"></p>
                     </div>
                 </div>
             </div>
@@ -58,6 +54,8 @@
     <div th:text="'Phone number:'+${costumerData.getPhoneNumber()} "> </div>
     <div th:text="'Billing address:'+${costumerData.getBillingAddress()} "> </div>
     <div th:text="'Shipping address:'+${costumerData.getShippingAddress()} "> </div>
+    <div th:text="'Card number:'+${paymentData.getCcnumber()} "> </div>
+    <div th:text="'Card name:'+${paymentData.getName()} "> </div>
 
 
 </div>

@@ -4,8 +4,11 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.ProductDao;
 import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.model.ProductCategory;
+import com.codecool.shop.model.Supplier;
 import com.codecool.shop.service.OrderService;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -30,12 +33,15 @@ public class ConfirmationController extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        Gson gson = new Gson();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+
+        gsonBuilder.registerTypeAdapter(OrderDaoMem.class, new OrderSerializer());
+
+        Gson gson = gsonBuilder.create();
         String orderJson = gson.toJson(cart);
         String orderName = LocalDate.now().toString();
 
-        try (FileWriter file = new FileWriter(orderName)) {
-            //We can write any JSONArray or JSONObject instance to the file
+       try (FileWriter file = new FileWriter("/home/martin/projects/codecool-shop-2-java-elStriker/src/main/resources/"+orderName+".json")) {
             file.write(orderJson);
             file.flush();
 
@@ -50,6 +56,7 @@ public class ConfirmationController extends HttpServlet {
         context.setVariable("totalprice", orderService.getTotalPrice());
         context.setVariable("totalpriceInCurrency", "Total price: " + orderService.getTotalPrice() + " USD");
         context.setVariable("costumerData", orderService.getCheckOutData());
+        System.out.println(orderService.getCheckOutData().getName());
         context.setVariable("paymentData", orderService.getPaymentData());
 
         engine.process("order/confirmation.html", context, resp.getWriter());

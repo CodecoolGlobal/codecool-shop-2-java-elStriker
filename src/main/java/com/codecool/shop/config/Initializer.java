@@ -29,12 +29,14 @@ public class Initializer implements ServletContextListener {
     private ResultSet resultSet;
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+
         try (Connection con = databaseManager.getConnection()){
             DbDataRetriever db = new DbDataRetriever(con);
             db.retrieveSuppliers();
             createSuppliers(con);
             createCategories(con);
             CreateProducts(con);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

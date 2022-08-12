@@ -16,20 +16,29 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
 
 
 @WebListener
 public class Initializer implements ServletContextListener {
-
+    private final DatabaseManager databaseManager = new DatabaseManager();
+    private ResultSet resultSet;
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        DatabaseManager databaseManager = new DatabaseManager();
-        try {
-            databaseManager.getConnection();
+        try (Connection con = databaseManager.getConnection()){
+            DbDataRetriever db = new DbDataRetriever(con);
+            db.retrieveSuppliers();
+            createSuppliers(con);
+            createCategories(con);
+            CreateProducts(con);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
 
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
@@ -102,5 +111,22 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Xiaomi smartwatch", new BigDecimal("0.2"), "USD", "Some chinese crap - Sun Tzu.", smartWatch, amazon));
         productDataStore.add(new Product("Apple watch", new BigDecimal("1293"), "USD", "The most expensive, unneccessary thing in your life, but you will buy it because u addicted bruv.", smartWatch, apple));
         productDataStore.add(new Product("Garmin Fenix 7X", new BigDecimal("999"), "USD", "Solar powered, sport watch that will make everyone excited to see you run.", smartWatch, amazon));
+    }
+
+    private void CreateProducts(Connection con) {
+    }
+
+    private void createCategories(Connection con) {
+    }
+
+    private void createSuppliers(Connection con) throws SQLException {
+        Statement statement = con.createStatement();
+        resultSet = statement.executeQuery("SELECT * FROM suppliers");
+
+        while (resultSet.next()) {
+            String name = resultSet.getString(2);
+            String description = resultSet.getString(3);
+
+        }
     }
 }

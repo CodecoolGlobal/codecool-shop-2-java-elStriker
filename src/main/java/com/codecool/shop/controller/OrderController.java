@@ -36,8 +36,10 @@ public class OrderController extends HttpServlet {
         if (req.getParameter("id") != null) {
             String newOrderId = req.getParameter("id");
             if (req.getParameter("number") != null) {
-                int productNumber = Integer.valueOf(Integer.parseInt(req.getParameter("number")));
-                orderService.addNewProducts(Integer.valueOf(Integer.parseInt(newOrderId)), productNumber);
+                if (req.getParameter("number") != "") {
+                    int productNumber = Integer.valueOf(Integer.parseInt(req.getParameter("number")));
+                    orderService.addNewProducts(Integer.valueOf(Integer.parseInt(newOrderId)), productNumber);
+                }
                 site = "http://localhost:8080/order";
             } else {
                 orderService.addNewProduct(Integer.valueOf(Integer.parseInt(newOrderId)));

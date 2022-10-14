@@ -1,12 +1,12 @@
 package com.codecool.shop.util;
 
 import java.util.Properties;
-import javax.mail.*;
-import javax.mail.Authenticator;
-import javax.mail.internet.*;
+//import javax.mail.*;
+//import javax.mail.Authenticator;
+//import javax.mail.internet.*;
 
 public class JavaMailUtil {
-    public static void sendMail(String receipient) throws MessagingException {
+   /* public static void sendMail(String receipient) throws MessagingException {
         Properties properties = new Properties();
 
         properties.put("mail.smtp.auth", true);
@@ -49,6 +49,6 @@ public class JavaMailUtil {
         message.setContent(multipart);
 
         return message;
-    }
+    }*/
 
 }

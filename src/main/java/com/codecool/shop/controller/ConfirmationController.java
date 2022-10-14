@@ -53,9 +53,9 @@ public class ConfirmationController extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         context.setVariable("products", orderService.getUniqueProducts());
-        context.setVariable("productcounts", orderService.getProductCounts());
-        context.setVariable("totalprice", orderService.getTotalPrice());
-        context.setVariable("totalpriceInCurrency", "Total price: " + orderService.getTotalPrice() + " USD");
+        context.setVariable("productCounts", orderService.getProductCounts());
+        context.setVariable("totalPrice", orderService.getTotalPrice());
+        context.setVariable("totalPriceInCurrency", "Total price: " + orderService.getTotalPrice() + " USD");
         context.setVariable("costumerData", orderService.getCheckOutData());
         System.out.println(orderService.getCheckOutData().getName());
         context.setVariable("paymentData", orderService.getPaymentData());

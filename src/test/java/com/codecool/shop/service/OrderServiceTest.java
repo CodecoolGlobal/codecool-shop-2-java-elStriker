@@ -84,22 +84,4 @@ public class OrderServiceTest {
 
     }
 
-    @Test
-    public void getTotalPrice_returnTotalPrice() {
-        orderDao = OrderDaoMem.getInstance();
-        productDao = ProductDaoMem.getInstance();
-        orderService = new OrderService(orderDao, productDao);
-        ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        Supplier amazon = new Supplier("Amazon", "Digital content and services");
-        Product product = new Product("Amazon Fire", new BigDecimal("49.9"), "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon);
-        orderDao.getAll().add(product);
-        orderDao.getAll().add(product);
-        System.out.println(orderService.getTotalPrice());
-        assertTrue(Double.parseDouble("99.8") == orderService.getTotalPrice());
-
-    }
-
-
-
-
 }

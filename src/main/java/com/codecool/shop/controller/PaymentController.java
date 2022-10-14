@@ -10,7 +10,7 @@ import com.codecool.shop.util.JavaMailUtil;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import javax.mail.MessagingException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,11 +35,11 @@ public class PaymentController extends HttpServlet {
         System.out.println(name +" "+ ccnumber +" "+ ccexp +" "+ cvc);
         PaymentDto paymentDto = new PaymentDto(ccnumber, ccexp, cvc, name);
         orderService.addPaymentData(paymentDto);
-        try {
+      /*  try {
             JavaMailUtil.sendMail("bryanronaldinho@gmail.com");
         } catch (MessagingException e) {
             throw new RuntimeException(e);
-        }
+        }*/
         resp.sendRedirect("/confirmation");
     }
 
